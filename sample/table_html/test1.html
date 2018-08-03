@@ -1,0 +1,40 @@
+<html ng-app="myApp">
+  <head>
+    <title></title>
+    </head>
+  <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js">
+  </script>   
+  <script>
+  myApp=angular.module('myApp',[]);
+  myApp.controller('myController',function($scope,$http){
+    $http.get('data.json').success(function(response){
+      $scope.myData = response;
+    });
+  });
+  </script>
+  </head>
+  <body ng-controller="myController">
+    <center>
+      <div>
+        <h1> How to use JSON data into HTML Table</h1>
+        <h2>Using AngularJs</h2>
+        <hr/>
+        <table border=1>
+          <caption>
+            <h3>Student Table</h3>
+          </caption>
+            <tr>
+              <th>Name</th>
+              <th>Company</th>
+            </tr>
+          <tbody>
+              <tr ng-repeat="data in myData">
+                  <td>{{data.Name}}</td>
+                  <td>{{data.Company}}</td>
+                </tr>
+          </tbody>
+          </table>
+      </div>
+    </center>
+  </body>
+</html>
